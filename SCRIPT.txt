@@ -1,0 +1,121 @@
+
+SQL> create table member_master(
+  2  MEMBER_ID NUMBER(3) CONSTRAINT MEMBERID_PK PRIMARY KEY,
+  3  NAME VARCHAR(20),
+  4  MEMBER_TYPE VARCHAR(10),
+  5  NO_OF_BOOKS_ISSUE NUMBER(3),
+  6  ADDRESS VARCHAR(20)
+  7  );
+
+Table created.
+
+ ALTER TABLE MEMBER_MASTER MODIFY  MEMBER_ID VARCHAR(10);
+
+Table altered.
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('S101', 'ABHISHEK GUPTA', 'STUDENT', 2, 'NASHIK');
+
+1 row created.
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('S102', 'VIRAT KOHLI', 'STUDENT', 0, 'DELHI');
+
+1 row created.
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F101', 'SACHIN TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+1 row created.
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F105', 'SACHIN TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F106', 'RAMESH TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F107', 'AJIT TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F108', 'VIJAY TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F109', 'RAJAT TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> INSERT INTO MEMBER_MASTER VALUES('F110', 'SACHIN TENDULKAR', 'FACULTY', 3, 'DELHI');
+
+
+SQL> CREATE TABLE BOOK_MASTER(
+  2  BOOK_ID VARCHAR(10),
+  3  AVAILIBILITY VARCHAR(10),
+  4  BOOK_NAME VARCHAR(20),
+  5  PRICE NUMBER(8,2)
+  6  );
+
+Table created.
+
+SQL> ALTER TABLE BOOK_MASTER MODIFY  BOOK_ID VARCHAR(10) CONSTRAINT BOOKID_PK PRIMARY KEY;
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B912', 'NO', 'PROGRAMMING WITH JAVA', 820);
+INSERT INTO BOOK_MASTER VALUES('B912', 'NO', 'PROGRAMMING WITH JAVA', 820)
+                                             
+SQL> INSERT INTO BOOK_MASTER VALUES('B912', 'NO', 'PROGRAMMING JAVA', 820);
+
+1 row created.
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B913', 'YES', 'BACK HOLES IN SPACE', 820);
+1 row created.
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B914', 'YES', 'white HOLES IN SPACE', 820);
+1 row created.
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B915', 'no', 'ATTITUDE', 820);
+1 row created.
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B916', 'YES', 'MY BOK', 820);
+1 row created.
+
+SQL> INSERT INTO BOOK_MASTER VALUES('B917', 'N0', 'BACK HOLES IN SPACE', 820);
+1 row created.
+
+
+
+
+SQL>     CREATE TABLE ISSUE(
+  2      ISSUE_SERIAL_NUMBER number(10),
+  3      ISSUE_DATE DATE,
+  4      RETURN_DATE DATE,
+  5      MEMBER_ID VARCHAR(10) CONSTRAINT ISSUE_BOOK_MEMBER_ID REFERENCES MEMBER_MASTER(MEMBER_ID),
+  6      book_id varchar(10) constraint isuuse_book_book_id references book_master(book_id)
+  7      );
+
+Table created.
+
+CREATE SEQUENCE ISSUE_SERIAL_NUMBER
+MINVALUE 1
+START WITH 1
+INCREMENT BY 1
+CACHE 10;
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S101', 'B911');
+
+1 row created.
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S102', 'B913');
+
+1 row created.
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S102', 'B911');
+
+1 row created.
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S101', 'B911');
+
+1 row created.
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S102', 'B912');
+
+1 row created.
+
+SQL> INSERT INTO issue values(issue_serial_number.nextval, sysdate, sysdate, 'S101', 'B913');
+
+1 row created.
